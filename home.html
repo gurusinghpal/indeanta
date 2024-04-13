@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Page</title>
+</head>
+<body>
+    <h2>Enter Details</h2>
+    <form id="inputForm">
+        Amount in Rupees: <input type="number" id="amountInput" required><br>
+        Quantity: <input type="number" id="quantityInput" required><br>
+        Date: <input type="date" id="dateInput" required><br>
+        Time: <input type="time" id="timeInput" required><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('inputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Storing the input values in localStorage
+            localStorage.setItem('amount', document.getElementById('amountInput').value);
+            localStorage.setItem('quantity', document.getElementById('quantityInput').value);
+            localStorage.setItem('date', document.getElementById('dateInput').value);
+            localStorage.setItem('time', document.getElementById('timeInput').value);
+
+            // Redirect to index.html to display the values
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

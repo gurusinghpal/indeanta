@@ -3,67 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Display Page</title>
-    <link rel="stylesheet" href="indes.css">
+    <title>Input Page</title>
 </head>
 <body>
-    <div class="main-container">
-        <div class="root">
-            <div class="groups">
-                <div class="top-icons">
-                    <img src="left_icon.png" alt="Left Icon" id="leftIcon">
-                    <img src="right_icon.png" alt="Right Icon" id="rightIcon">
-                </div>                
-                <div class="image">
-                    <img src="output-onlinepngtools.png" alt="QR Icon" class="qr-icon">
-                    <!-- Other elements here -->
-                    <span class="text">QR Code Detected</span>
-                    <span class="text-2">₹ <span id="amountDisplay"> 10</span></span>
-                    <button class="capsule-button">Payment Done</button>
-                    <span class="text-4" id="dateTimeDisplay">09/04/2024<br>04:30:15 PM</span>
-                    <span class="multiply-by-2" id="totalDisplay">10×2=20</span>
-                    <span class="total">Total</span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h2>Enter Details</h2>
+    <form id="inputForm">
+        Amount in Rupees: <input type="number" id="amountInput" required><br>
+        Quantity: <input type="number" id="quantityInput" required><br>
+        Date: <input type="date" id="dateInput" required><br>
+        Time: <input type="time" id="timeInput" required><br>
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
-        window.addEventListener('load', () => {
-    // Retrieving the stored values
-    const amount = localStorage.getItem('amount');
-    const quantity = localStorage.getItem('quantity');
-    const date = localStorage.getItem('date');
-    const time = localStorage.getItem('time');
+        document.getElementById('inputForm').addEventListener('submit', function(e) {
+            e.preventDefault();
 
-    // Parse date and time
-    const parsedDate = new Date(date);
-    const parsedTime = new Date(`2000-01-01T${time}`);
+            // Storing the input values in localStorage
+            localStorage.setItem('amount', document.getElementById('amountInput').value);
+            localStorage.setItem('quantity', document.getElementById('quantityInput').value);
+            localStorage.setItem('date', document.getElementById('dateInput').value);
+            localStorage.setItem('time', document.getElementById('timeInput').value);
 
-    // Format date with leading zeros
-    const formattedDate = parsedDate.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit'
-    });
-
-    // Format time with leading zeros and AM/PM in uppercase
-    const formattedTime = parsedTime.toLocaleTimeString('en-US', {
-        hour12: true,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    }).toUpperCase();
-
-    // Calculating total
-    const total = amount * quantity;
-
-    // Displaying the retrieved values
-    document.getElementById('amountDisplay').textContent =amount;
-    document.getElementById('totalDisplay').innerHTML = `<span class="amountQuantity">₹ ${amount}×${quantity} =</span> ₹ ${total}`;
-    document.getElementById('dateTimeDisplay').textContent = `${formattedDate}\n${formattedTime}`;
-});
-
+            // Redirect to index.html to display the values
+            window.location.href = 'home.html';
+        });
     </script>
 </body>
 </html>

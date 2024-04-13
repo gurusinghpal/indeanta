@@ -77,9 +77,10 @@
 }
 
 .capsule-button {
-    padding: 35px 150px;
+    padding: 36px 150px;
     background: linear-gradient(to right, #00b98a, #007b8e);
     color: white;
+    border: none;
     border-radius: 70px;
     text-align: center;
     font-size: 39px;
